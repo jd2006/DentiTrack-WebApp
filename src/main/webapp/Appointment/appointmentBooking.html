@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appointment Booking</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="../styles/formStyle.css">
+<script defer src="../scripts/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<form action="/" method="post" id="form">
+			<h1>Appointment</h1>
+			<div class="input-control">
+				<label for="doctorname">Dentist Name</label> 
+				<input type="text" id="doctorname" name="doctorname" disabled>
+				<div class="error"></div>
+			</div>
+
+			<div class="input-control">
+				<label for="appointmentDate">Select a Date</label> 
+				<input type="date" id="appointmentDate" name="appointmentDate">
+				<div class="error"></div>
+			</div>
+			<button type="button" onclick="fetchAvailableTimeSlots()">Fetch Available Time Slots</button>
+<!--				<button type="button" onclick="testJSLoad()">Test JS Load</button>-->
+		</form>
+
+		<div id="timeSlotsContainer">
+			<!-- Time slots will be displayed here -->
+		</div>
+		
+		<button type="button" onclick="">Confirm Time Slot</button>
+
+	</div>
+
+
+</body>
+</html>

@@ -13,41 +13,110 @@ form.addEventListener('submit', e => {
 });
 
 const setError = (element, message) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
+	const inputControl = element.parentElement;
+	const errorDisplay = inputControl.querySelector('.error');
 
-    errorDisplay.innerText = message;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success');
+	errorDisplay.innerText = message;
+	inputControl.classList.add('error');
+	inputControl.classList.remove('success');
 }
 
 const setSuccess = element => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.error');
+	const inputControl = element.parentElement;
+	const errorDisplay = inputControl.querySelector('.error');
 
-    errorDisplay.innerText = '';
-    inputControl.classList.add('success');
-    inputControl.classList.remove('error');
+	errorDisplay.innerText = '';
+	inputControl.classList.add('success');
+	inputControl.classList.remove('error');
 }
 
 const validateInputs = () => {
-    const usernameValue = username.value.trim();
-    const passwordValue = password.value.trim();
+	const usernameValue = username.value.trim();
+	const passwordValue = password.value.trim();
 	let isValid = true;
 
-    if(usernameValue === ''){
-        setError(username, "Username required");
+	if (usernameValue === '') {
+		setError(username, "Username required");
 		isValid = false;
-    } else{
-        setSuccess(username);
-    }
+	} else {
+		setSuccess(username);
+	}
 
-    if(passwordValue === ''){
-        setError(password, "Password required");
+	if (passwordValue === '') {
+		setError(password, "Password required");
 		isValid = false;
-    } else{
-        setSuccess(password);
-    }
-	
+	} else {
+		setSuccess(password);
+	}
+
 	return isValid;
+}
+
+// Set the default date and restrict mindate and max date
+
+document.addEventListener("DOMContentLoaded", function() {
+	const dateInput = document.getElementById("date");
+
+	// Set the minimum date to today
+	const today = new Date().toISOString().split('T')[0];
+	dateInput.min = today;
+
+	// Set the maximum date to one month ahead
+	const maxDate = new Date();
+	maxDate.setMonth(maxDate.getMonth() + 1);
+	dateInput.max = maxDate.toISOString().split('T')[0];
+});
+
+// Function to fetch available time slots
+function fetchAvailableTimeSlots(){
+	const selectedDate = document.getElementById('appointmentDate').value;
+//	const url = `GetTimeSlotsServlet?date=${selectedDate}`;
+
+
+
+//method2
+//	const url = "GetTimeSlotsServlet?date=" + selectedDate;
+const urlParams = new URLSearchParams({
+  date: selectedDate
+});
+
+// Append the query string to the servlet URL
+const baseUrl = "/DentiTrack-WebApp/GetTimeSlotsServlet";
+const url = `${baseUrl}?${urlParams.toString()}`;
+
+fetch(url)
+  // ... rest of the fetch code
+	
+
+	//fetch(url)
+	.then(response => {
+	    if (!response.ok) {
+	      throw new Error(`HTTP error! status: ${response.status}`);
+	    }
+	    return response.json();
+	  })
+		.then(data => {
+			const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+			timeSlotsContainer.innerHTML = ''; //clear previous content
+			
+			data.forEach(slot => {
+				const radioBtn = document.createElement('input');
+				radioBtn.type = 'radio';
+				radioBtn.name = 'timeSlot';
+				radioBtn.value = slot.time; // TODO: create a slot object with a 'time' property
+				
+				const label = document.createElement('label');
+				label.textContent = slot.time; // Display the time slot
+				
+				timeSlotsContainer.appendChild(radioBtn);
+				timeSlotsContainer.appendChild(label);
+				timeSlotsContainer.appendChild(document.createElement('br'));		
+			});
+		})
+		.catch(error => console.error('Error fetching time slots:',error));
+	
+}
+
+function testJSLoad() {
+    alert('JavaScript is working!');
 }
