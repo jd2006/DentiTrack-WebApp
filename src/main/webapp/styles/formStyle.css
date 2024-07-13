@@ -130,3 +130,17 @@ input[type="submit"]:hover {
 	font-size: 9px;
 	height: 13px;
 }
+
+
+
+/* Time-Slot Radio button */
+
+.time-slot-container {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Align items vertically centered */
+    margin-bottom: 8px; /* Optional: add margin between each time slot */
+}
+
+input[type="radio"] {
+    margin-right: 8px; /* Optional: add spacing between radio button and label */
+}

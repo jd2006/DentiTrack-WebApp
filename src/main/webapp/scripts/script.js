@@ -52,7 +52,36 @@ const validateInputs = () => {
 	return isValid;
 }
 
+// Function to fetch doctor names
+function fetchDoctors() {
+	const url = "/DentiTrack-WebApp/GetDoctorsServlet";
+	
+	fetch(url)
+	.then(response =>{
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+		return response.json();
+	})
+	.then(data => {
+		const doctorSelect = document.getElementById('doctorname');
+		
+		doctorSelect.innerHTML = ''; // Clear previous options
+		
+		data.forEach(doctor => {
+			const option = document.createElement('option');
+			option.value = doctor.userId; 
+			option.textContent = `${doctor.firstName} ${doctor.lastName}`;
+			doctorSelect.appendChild(option);
+		});
+		
+		doctorSelect.disabled = false; //Enable dropdown
+	})
+	.catch(error => console.error('Error fetching doctors:',error));
+}
+
 // Set the default date and restrict mindate and max date
+// TODO: Need to recheck
 
 document.addEventListener("DOMContentLoaded", function() {
 	const dateInput = document.getElementById("date");
@@ -100,23 +129,60 @@ fetch(url)
 			timeSlotsContainer.innerHTML = ''; //clear previous content
 			
 			data.forEach(slot => {
+				// Create a container for each radio button and label
+				const container = document.createElement('div');
+				container.classList.add('time-slot-container');
+				
 				const radioBtn = document.createElement('input');
 				radioBtn.type = 'radio';
 				radioBtn.name = 'timeSlot';
-				radioBtn.value = slot.time; // TODO: create a slot object with a 'time' property
+				radioBtn.value = slot.time; 
 				
 				const label = document.createElement('label');
 				label.textContent = slot.time; // Display the time slot
 				
 				timeSlotsContainer.appendChild(radioBtn);
 				timeSlotsContainer.appendChild(label);
-				timeSlotsContainer.appendChild(document.createElement('br'));		
+				timeSlotsContainer.appendChild(container);		
 			});
+			
+			// Create a "Confirm Appointment" button
+			const confirmButton = document.createElement('button');
+			confirmButton.type = 'button';
+			confirmButton.textContent = 'Confirm Appointment';
+			confirmButton.addEventListener('click', confirmAppointment);
+
+			// Append the button to the timeSlotsContainer
+			timeSlotsContainer.appendChild(confirmButton);
+			
 		})
 		.catch(error => console.error('Error fetching time slots:',error));
+		
+		
 	
 }
 
 function testJSLoad() {
     alert('JavaScript is working!');
 }
+
+// Confirm Appointment
+function confirmAppointment(){
+	const selectedTimeSlot = document.querySelector('input[name="timeSlot"]:checked');
+	            if (selectedTimeSlot) {
+	                const selectedTime = selectedTimeSlot.value;
+	                alert(`Appointment confirmed for ${selectedTime}`);
+	                // Add logic here to proceed with appointment booking
+	            } else {
+	                alert('Please select a time slot to confirm your appointment.');
+	            }
+}
+
+
+// to include a function to fetch doctor names when the page loads
+document.addEventListener('DOMContentLoaded', ()=>{
+	fetchDoctors();
+});
+
+
+

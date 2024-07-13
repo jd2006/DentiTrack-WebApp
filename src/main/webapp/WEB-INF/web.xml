@@ -12,10 +12,19 @@
   <servlet>
     <servlet-name>GetTimeSlotsServlet</servlet-name>
     <servlet-class>com.dentitrack.controller.GetTimeSlotsServlet</servlet-class>
-</servlet>
-<servlet-mapping>
+  </servlet>
+  <servlet-mapping>
     <servlet-name>GetTimeSlotsServlet</servlet-name>
     <url-pattern>/GetTimeSlotsServlet</url-pattern>
-</servlet-mapping>
-  
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetDoctorsServlet</display-name>
+    <servlet-name>GetDoctorsServlet</servlet-name>
+    <servlet-class>com.dentitrack.controller.GetDoctorsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetDoctorsServlet</servlet-name>
+    <url-pattern>/GetDoctorsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

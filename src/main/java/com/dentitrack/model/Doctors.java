@@ -10,8 +10,24 @@ public class Doctors extends Users {
         this.specialty = specialty;
         this.licenseNumber = licenseNumber;
     }
+    
+    
 
-    // Getters and Setters
+    public Doctors() {
+		super();
+	}
+
+
+
+	public Doctors(int userId, String firstName, String lastName, String email, String contactNo, int isActive,
+			String username, String password, String userType) {
+		super(userId, firstName, lastName, email, contactNo, isActive, username, password, userType);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	// Getters and Setters
     public String getSpecialty() {
         return specialty;
     }
