@@ -2,13 +2,12 @@ package com.dentitrack.model;
 
 public class Doctors extends Users {
     private String specialty;
-    private String licenseNumber;
+ 
 
     // Constructor
-    public Doctors(int userId, String firstName, String lastName, String email, String contactNo,int isActive, String username, String password, String userType, String specialty, String licenseNumber) {
-        super(userId, firstName, lastName, email, contactNo, isActive, username, password, userType);
+    public Doctors(int userId, String firstName, String lastName, String email, String contactNo,int isActive, String password, String userType, String specialty) {
+        super(userId, firstName, lastName, email, contactNo, isActive, password, userType);
         this.specialty = specialty;
-        this.licenseNumber = licenseNumber;
     }
     
     
@@ -18,12 +17,6 @@ public class Doctors extends Users {
 	}
 
 
-
-	public Doctors(int userId, String firstName, String lastName, String email, String contactNo, int isActive,
-			String username, String password, String userType) {
-		super(userId, firstName, lastName, email, contactNo, isActive, username, password, userType);
-		// TODO Auto-generated constructor stub
-	}
 
 
 
@@ -36,11 +29,4 @@ public class Doctors extends Users {
         this.specialty = specialty;
     }
 
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
-
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
-    }
 }

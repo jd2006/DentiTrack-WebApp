@@ -6,7 +6,7 @@ public class ClinicalUsers extends Users {
 	// Constructor
 	public ClinicalUsers(int userId, String firstName, String lastName, String email, String contactNo,int isActive, String username,
 			String password, String userType, String designation) {
-		super(userId, firstName, lastName, email,contactNo, isActive, username, password, userType);
+		super(userId, firstName, lastName, email,contactNo, isActive, password, userType);
 		this.designation = designation; // Initialize designation attribute
 	}
 

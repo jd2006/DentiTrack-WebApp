@@ -7,20 +7,17 @@ public class Users {
 	private String email;
 	private String contactNo;
 	private int isActive; // 0 for inactive, 1 for active
-	private String username;
 	private String password;
 	private String userType; // "patient", "clinical_user", "doctor"
 
 	// Constructor
-	public Users(int userId, String firstName, String lastName, String email, String contactNo, int isActive, String username,
-			String password, String userType) {
+	public Users(int userId, String firstName, String lastName, String email, String contactNo, int isActive, String password, String userType) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.contactNo = contactNo;
 		this.isActive = isActive;
-		this.username = username;
 		this.password = password;
 		this.userType = userType;
 	}
@@ -68,14 +65,6 @@ public class Users {
 
 	public void setIsActive(int isActive) {
 		this.isActive = isActive;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getPassword() {

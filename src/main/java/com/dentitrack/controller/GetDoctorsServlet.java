@@ -41,28 +41,27 @@ public class GetDoctorsServlet extends HttpServlet {
 
 	private List<Doctors> getDoctorsFromDatabase() {
 		List<Doctors> doctors = new ArrayList<>();
-		String query = "SELECT d.doctorId, u.userId, u.firstName, u.lastName, u.email, u.contactNo, u.isActive, u.username, u.password, u.userType, d.specialty, d.licenseNumber "
-                + "FROM doctors d "
-                + "JOIN users u ON d.userId = u.userId";
+		String query = "SELECT d.dentist_Id, u.first_Name, u.last_Name, u.email, u.contact_No, u.is_Active, u.password_hash, u.user_type, d.speciality "
+                + "FROM dentists d "
+                + "JOIN users u ON d.dentist_id = u.user_Id";
 
 		try (Connection conn = DatabaseUtil.getConnection();
 				PreparedStatement ps = conn.prepareStatement(query);
 				ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
-				int userId = rs.getInt("userId");
-                String firstName = rs.getString("firstName");
-                String lastName = rs.getString("lastName");
+				int userId = rs.getInt("dentist_Id");
+                String firstName = rs.getString("first_Name");
+                String lastName = rs.getString("last_Name");
                 String email = rs.getString("email");
-                String contactNo = rs.getString("contactNo");
-                int isActive = rs.getInt("isActive");
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                String userType = rs.getString("userType");
-                String specialty = rs.getString("specialty");
-                String licenseNumber = rs.getString("licenseNumber");
+                String contactNo = rs.getString("contact_No");
+                int isActive = rs.getInt("is_Active");
+                String password = rs.getString("password_hash");
+                String userType = rs.getString("user_type");
+                String specialty = rs.getString("speciality");
+             
 
-                Doctors doctor = new Doctors(userId, firstName, lastName, email, contactNo, isActive, username, password, userType, specialty, licenseNumber);
+                Doctors doctor = new Doctors(userId, firstName, lastName, email, contactNo, isActive, password, userType, specialty);
                 doctors.add(doctor);
 			}
 		} catch (SQLException e) {

@@ -12,7 +12,7 @@ public class Patients extends Users {
 
     // Constructor
     public Patients(int userId, String firstName, String lastName, String email, String contactNo, int isActive, String username, String password, String userType, int patientId, String address, String medicalHistory, LocalDate DOB, String allergy, int age) {
-        super(userId, firstName, lastName, email, contactNo, isActive, username, password, userType);
+        super(userId, firstName, lastName, email, contactNo, isActive, password, userType);
         this.patientId = patientId;
         this.address = address;
         this.medicalHistory = medicalHistory;

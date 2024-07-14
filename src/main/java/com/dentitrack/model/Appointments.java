@@ -6,8 +6,8 @@ import java.time.LocalTime;
 public class Appointments {
 	private int appointmentId;
 	private LocalDate date;
-	private LocalTime startTime;
-	private LocalTime endTime;
+	private LocalTime time;
+	//private LocalTime endTime;
 	private int isActive;
 	private int doctorId;
 	private int patientId;
@@ -22,8 +22,8 @@ public class Appointments {
 			int doctorId, int patientId, int reminderSent) {
 		this.appointmentId = appointmentId;
 		this.date = date;
-		this.startTime = startTime;
-		this.endTime = endTime;
+		this.time = startTime;
+		//this.endTime = endTime;
 		this.isActive = isActive;
 		this.doctorId = doctorId;
 		this.patientId = patientId;
@@ -48,20 +48,18 @@ public class Appointments {
 	}
 
 	public LocalTime getStartTime() {
-		return startTime;
+		return time;
 	}
 
 	public void setStartTime(LocalTime startTime) {
-		this.startTime = startTime;
+		this.time = startTime;
 	}
 
-	public LocalTime getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(LocalTime endTime) {
-		this.endTime = endTime;
-	}
+	/*
+	 * public LocalTime getEndTime() { return endTime; }
+	 * 
+	 * public void setEndTime(LocalTime endTime) { this.endTime = endTime; }
+	 */
 
 	public int getIsActive() {
 		return isActive;

@@ -27,4 +27,24 @@
     <servlet-name>GetDoctorsServlet</servlet-name>
     <url-pattern>/GetDoctorsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckLoginStatusServlet</display-name>
+    <servlet-name>CheckLoginStatusServlet</servlet-name>
+    <servlet-class>com.dentitrack.controller.CheckLoginStatusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckLoginStatusServlet</servlet-name>
+    <url-pattern>/CheckLoginStatusServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.dentitrack.controller.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
